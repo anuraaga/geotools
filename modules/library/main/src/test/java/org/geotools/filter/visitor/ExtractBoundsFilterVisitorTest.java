@@ -1,8 +1,5 @@
 package org.geotools.filter.visitor;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.filter.temporal.TemporalFilterTestSupport;
 import org.junit.Test;
@@ -318,5 +315,13 @@ public class ExtractBoundsFilterVisitorTest extends TemporalFilterTestSupport {
                         ff.isNil(ff.literal("someDate"), null));
         final Envelope env = (Envelope) f.accept(visitor, null);
         assertEquals(new Envelope(-10, 10, -10, 10), env);
+    }
+
+    @Test
+    public void testPropertyName() {
+        final Filter f =
+                ff.contains(ff.property("the_geom"), ff.literal("somePoint"));
+        final Envelope env = (Envelope) f.accept(visitor, null);
+        assertEquals(visitor.infinity(), env);
     }
 }

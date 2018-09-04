@@ -399,7 +399,7 @@ public class ExtractBoundsFilterVisitor extends NullFilterVisitor {
 
     @Override
     public Object visit(PropertyName expression, Object data) {
-        return null;
+        return infinity();
     }
 
     @Override
